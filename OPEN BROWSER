@@ -1,1 +1,33 @@
+https://github.com/balramtest108/automation-code-for--automate-ecommerce.git
+package testid1pack;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+
+public class launchbrowser {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		Thread.sleep(15000);
+driver.get("https://www.youtube.com");
+WebElement searchbox=driver.findElement(By.id("search"));
+searchbox.sendKeys("i will tetser");
+searchbox.submit();
+driver.manage().window().maximize();
+
+
+driver.close();
+
+		
+
+	}
+
+}
 
