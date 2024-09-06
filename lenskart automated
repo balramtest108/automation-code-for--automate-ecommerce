@@ -1,0 +1,67 @@
+package testid1pack;
+
+
+
+import java.time.Duration;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+
+
+public class launchbrowser {
+
+	private static final int String = 0;
+
+	public static void main(String[] args) throws InterruptedException  {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		driver.get("https://www.lenskart.com/");
+driver.manage().window().maximize();
+System.out.println("This is the Title:-"+ driver.getTitle());
+
+
+
+ChromeOptions o=new ChromeOptions();
+o.addArguments("--disable-notifications");
+System.out.println("after notification "+ driver.findElement(By.cssSelector("input[placeholder='What are you looking for?']")).getText());
+WebElement Search=driver.findElement(By.cssSelector("input[placeholder='What are you looking for?']"));
+Search.click();
+Search.sendKeys("eyeglass");
+Search.sendKeys(Keys.ENTER);
+driver.findElement(By.xpath("//p[normalize-space()='Lenskart Hustlr']")).click();
+
+Set<String> a=driver.getWindowHandles();
+for(String t:a) {
+	String title=driver.getTitle();
+	if(title.equals("Gujrat Titans : Buy Kiara Advani Suryakumar and Navy Full Rim Wayfarer"))
+	{
+		System.out.println("found title of new page:"+ title);
+		break;
+	}
+}
+
+driver.findElement(By.cssSelector("button[id='btn-primary'] p[class='PrimaryText--l0ai4c jDwkbw']")).click();
+driver.findElement(By.cssSelector("#single_vision")).click();
+driver.findElement(By.cssSelector("body > div:nth-child(6) > div:nth-child(8) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)")).click();
+driver.findElement(By.cssSelector(".Text--ecq69o.hXLbJA.btnContinue")).click();
+driver.findElement(By.cssSelector(".CartStyles__ButtonContent-sc-14bvp3n-7.iUXphc")).click();
+
+
+
+driver.close();
+
+	}
+
+	private static void If(boolean equals) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
