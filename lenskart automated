@@ -2,10 +2,13 @@ package testid1pack;
 
 
 
+import java.awt.Window;
+import java.lang.classfile.WritableElement;
 import java.time.Duration;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,30 +41,60 @@ Search.sendKeys(Keys.ENTER);
 driver.findElement(By.xpath("//p[normalize-space()='Lenskart Hustlr']")).click();
 
 Set<String> a=driver.getWindowHandles();
+System.out.println("all window handle" +a);
 for(String t:a) {
-	String title=driver.getTitle();
-	if(title.equals("Gujrat Titans : Buy Kiara Advani Suryakumar and Navy Full Rim Wayfarer"))
+	driver.switchTo().window(t);
+String title=driver.getTitle();
+	
+	if(title.contains("Gujrat Titans : Buy Kiara Advani Suryakumar and Navy Full Rim Wayfarer"))
 	{
-		System.out.println("found title of new page:"+ title);
-		break;
-	}
-}
-
-driver.findElement(By.cssSelector("button[id='btn-primary'] p[class='PrimaryText--l0ai4c jDwkbw']")).click();
+		System.out.println(("new window url")+driver.getTitle());
+		
+driver.findElement(By.tagName("small")).click();
 driver.findElement(By.cssSelector("#single_vision")).click();
-driver.findElement(By.cssSelector("body > div:nth-child(6) > div:nth-child(8) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)")).click();
-driver.findElement(By.cssSelector(".Text--ecq69o.hXLbJA.btnContinue")).click();
+WebElement c=driver.findElement(By.cssSelector("body > div:nth-child(6) > div:nth-child(8) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)"));
+System.out.println("2nd line "+c.getText());
+c.click();
+driver.findElement(By.tagName("button")).click();
+
+String d=driver.findElement(By.cssSelector(".CartStyles__ButtonContent-sc-14bvp3n-7.iUXphc")).getText();
+System.out.println("Checkou page"+d);
 driver.findElement(By.cssSelector(".CartStyles__ButtonContent-sc-14bvp3n-7.iUXphc")).click();
 
+WebElement e=driver.findElement(By.xpath("//input[@placeholder='Mobile Number']"));
+e.click();
+System.out.println("Mobile num"+e.getText());
+e.sendKeys("9060201010");
+driver.findElement(By.xpath("//button[normalize-space()='Checkout as Guest']")).click();
+driver.findElement(By.xpath("//div[@id='container-First Name*']//input[@id='input-desktop']")).sendKeys("Balram");
+driver.findElement(By.xpath("//div[@id='container-Email Address*']//input[@id='input-desktop']")).sendKeys("balram@gmail.com");
+driver.findElement(By.xpath("//div[@id='container-Address Line 1*']//input[@id='input-desktop']")).sendKeys("123");
+driver.findElement(By.xpath("//div[@id='container-Address Line 2']//input[@id='input-desktop']")).sendKeys("last address");
+driver.findElement(By.xpath("//div[@id='container-Pincode*']//input[@id='input-desktop']")).sendKeys("110034");
+JavascriptExecutor js = (JavascriptExecutor) driver;
+WebElement f=driver.findElement(By.xpath("//label[normalize-space()='Save as*']"));
+js.executeScript("arguments[0].scrollIntoView(true);",f);
+Thread.sleep(5000);
+driver.findElement(By.xpath("//div[contains(text(),'Home')]")).click();
+driver.findElement(By.id("button")).click();
+JavascriptExecutor js1 = (JavascriptExecutor) driver;
+WebElement g=driver.findElement(By.xpath("//h2[normalize-space()='Cash On Delivery']"));
+js1.executeScript("arguments[0].scrollIntoView(true);",g);
+Thread.sleep(5000);
+driver.findElement(By.xpath("//h3[normalize-space()='Cash On Delivery']")).click();
+driver.findElement(By.xpath("//span[normalize-space()='Place order & Pay on Delivery']")).click();
+System.out.println("after cehckout"+driver.getTitle());
 
-
+break;
+	}
+		
+	}
 driver.close();
 
 	}
 
-	private static void If(boolean equals) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
+
+
